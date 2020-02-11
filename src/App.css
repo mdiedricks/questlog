@@ -1,0 +1,32 @@
+.App {
+  text-align: center;
+  background-color: blue;
+  height: 100vh
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+textarea {
+  height: 20vh;
+}
+
+.dashboard {
+  height: 60%;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
