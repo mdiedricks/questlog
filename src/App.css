@@ -1,7 +1,9 @@
 .App {
   text-align: center;
-  background-color: blue;
-  height: 100vh
+  background-color:brown lighten-5;
+  width: 100vw;
+  height: 100vh;
+  position: absolute
 }
 
 .App-header {
@@ -23,10 +25,19 @@ textarea {
   height: 20vh;
 }
 
-.dashboard {
-  height: 60%;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
+.dash-container {
+  height: 100%;
+  position: relative;
+}
+
+.card.small{
+  height: 200px
+}
+
+.card-content.small{
+  padding: 25px
+}
+
+.char-title{
+  font-size:1.3rem
 }
