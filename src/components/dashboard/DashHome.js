@@ -19,13 +19,13 @@ const DashHome = () => {
 
   const compLoaded = async() => {
     // CHECK IF USER IS CURRENTLY LOGGED IN
-    console.log('From context:',userID);
     if (userID != null) {
       setUID(userID);
       bUID = userID;      
     } else {
       console.log('User not available');
     }
+
     // SET UP ALL THE FIREBASE SHORTFORMS FOR QUERYING
     const games = firebase.firestore().collection('games');
     let gameList = [];
@@ -33,23 +33,21 @@ const DashHome = () => {
     // GET LIST OF GAMES CREATED BY CURRENT USER
     games.where('uid', '==', bUID).get().then((snapshot) => {
       snapshot.docs.forEach(doc => {
-        // console.log(doc.data().title);
-        gameList.push(doc.data());
+        console.log(doc.id);
+        gameList.push(doc);
+        // .data()
         })
-        console.log("This is a : " + typeof gameList);
+        // console.log("This is a : " + typeof gameList);
         setUserGames(gameList);
-        console.log("State: ", gameList)
+        // console.log("State: ", gameList)
         userGameList = gameList;
-        console.log("Variable: ", userGameList);
+        // console.log("Variable: ", userGameList);
         
         userGames.map(e => (
           console.log(`Game: ${e.title}`)
         ))
       })
   }
-
-//  const gamesToRender
-
 
     return (
     <div className="container">
@@ -63,14 +61,14 @@ const DashHome = () => {
           <div className="col l6 m8 s10">
           <ul>
             {userGames.map(e => (
-              <Link to={`/game/${e.uid}`}>
-                <li key={e.title}>
+              <Link to={`/game/${e.data().uid}`} key={e.id}>
+                <li>
                   <div className="card horizontal small grey lighten-3 z-depth-2">
                     <div className="card-stacked">
                       <div className="card-content small left-align">
-                        <h3>{e.title}</h3>
-                        <p>Location: {e.location}</p>
-                        <p>Story Hook: {e.storyHook}</p>
+                        <h3>{e.data().title}</h3>
+                        <p>Location: {e.data().location}</p>
+                        <p>Story Hook: {e.data().storyHook}</p>
                       </div>
                       <div className="right-align">
                         <div className="btn-flat">

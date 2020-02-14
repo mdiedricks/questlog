@@ -14,6 +14,7 @@ export const AuthProvider =({children}) => {
 
     useEffect(() => {
         fbApp.auth().onAuthStateChanged(setCurrentUser);
+        console.log(currentUser)
     }, []);
 
     return(

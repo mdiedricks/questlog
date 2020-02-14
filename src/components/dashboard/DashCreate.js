@@ -1,53 +1,64 @@
 import React, { useContext, useState, useEffect } from "react";
 import firebase from 'firebase';
 import {AuthContext} from '../auth/Auth';
+import {Link} from 'react-router-dom';
 
 const DashCreate = () => {
-  const [user, setUser] = useState('');
-  const [title, setTitle] = useState('');
-  const [location, setLocation] = useState('');
-  const [storyHook, setStoryHook] = useState('');
-
-  const games = firebase.firestore().collection('games');
-  const { currentUser } = useContext(AuthContext)
-
+  const { userID } = useContext(AuthContext)
+  const [UID, setUID] = useState('');
+  const [gameTitle, setGameTitle] = useState('');
+  const [gameLocation, setGameLocation] = useState('');
+  const [gameStoryHook, setGameStoryHook] = useState('');
+  
+  let bUID = UID
+  
   useEffect(()=> {
     compLoaded() 
   }, []) 
 
   const compLoaded = async() => {
     // CHECK IF USER IS CURRENTLY LOGGED IN
-    if (currentUser) {
-      setUser({...user, user: currentUser});
-      console.log('Create user is: ', user);
+    if (userID != null) {
+      setUID(userID);
+      bUID = userID;
     } else {
       console.log('User not available');
     }
-
-    const currUser = await firebase.auth().currentUser.uid;
-    console.log(currUser);
-    setUser({...user, user: currUser})
   }
 
-  // const printState = () => {
-  //   console.log(`The title of youre new game is ${title}`)
-  // }
+  //DECLARING FIREBASE SHORTFORMS FOR POSTING
+  const games = firebase.firestore().collection('games');
+
+  const handleTitle = ((e) => {
+    setGameTitle(e.target.value)
+    console.log(gameTitle);
+  });
+  const handleLocation = ((e) => {
+    setGameLocation(e.target.value)
+    console.log(gameLocation);
+  });
+  const handleStoryHook = ((e) => {
+    setGameStoryHook(e.target.value)
+    console.log(gameStoryHook);
+  });
 
   const handleSubmit = e => {
     e.preventDefault();
-    games.doc(title).set({
-      title: title,
-      location: location,
-      storyHook: storyHook
+    console.log(games);
+    games.add({
+      title: gameTitle,
+      location: gameLocation,
+      storyHook: gameStoryHook,
+      uid: UID
     })
-    .then(function() {
-        console.log(`Document: ${title} successfully written!`);
-    })
-    .catch(function(error) {
-        console.error("Error writing document: ", error);
-    });
-
+    // .then(function() {
+    //     console.log(`Document: ${gameTitle} successfully written!`);
+    // })
+    // .catch(function(error) {
+    //     console.error("Error writing document: ", error);
+    // });
   };
+
 
     return (
       <div>
@@ -62,9 +73,9 @@ const DashCreate = () => {
                     <input
                       type="text"
                       id="title"
-                      value = {title}
+                      value = {gameTitle}
                       required
-                      onChange={(e) => setTitle(e.target.value)}
+                      onChange={handleTitle}
                     />
                   </div>
                   <div className="input-field">
@@ -72,9 +83,9 @@ const DashCreate = () => {
                     <input
                       type="text"
                       id="location"
-                      value={location}
+                      value={gameLocation}
                       required
-                      onChange={(e) => setLocation(e.target.value)}
+                      onChange={handleLocation}
                     />
                   </div>
                   <div className="input-field">
@@ -82,8 +93,8 @@ const DashCreate = () => {
                     <textarea
                       type="text"
                       id="storyHook"
-                      value={storyHook}
-                      onChange={(e) => setStoryHook(e.target.value)}
+                      value={gameStoryHook}
+                      onChange={handleStoryHook}
                       required
                     />
                   </div>
@@ -96,7 +107,6 @@ const DashCreate = () => {
           </div>
         </div>
       </div>
-      
     );
 }
 

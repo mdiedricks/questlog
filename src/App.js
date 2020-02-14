@@ -36,10 +36,9 @@ class App extends Component {
           <div className="App">
             <Navbar user={userProps} />
             <Switch>
-              {/* <PrivateRoute exact path="/" component={DashHome} /> */}
               <Route exact path="/" user={userProps} component={DashLanding} />
               <PrivateRoute path="/home" user={userProps} component={DashHome} />
-              <PrivateRoute path="/new-game" component={DashCreate} />
+              <Route path="/new-game" component={DashCreate} />
               <PrivateRoute path="/game/:id" component={DashGame} />
               <Route path="/signin" component={SignIn2} />
               <Route path="/signup" component={SignUp2} />

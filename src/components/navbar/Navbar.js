@@ -9,6 +9,7 @@ import SignedOutLinks from "./SignedOutLinks";
 function Navbar() {
   // new stuff
   const [user, setUser] = useState('');
+  const { userID } = useContext(AuthContext);
 
   useEffect(()=> {
     compLoaded() 
@@ -26,17 +27,18 @@ function Navbar() {
     <nav className="nav-wrapper grey darken-3">
       <div className="container">
         <div className="left">
-          <Link to="/" className="brand-logo">
-            Quest Log
-          </Link>
+          
+          
+          <Link to="/" className="brand-logo">Quest Log</Link>
+
         </div>
         <div className="right">
-          {/* {(user != null) ? (  */}
-          <SignedOutLinks />
-          {/* ) : ( */}
+          {(userID) ? ( 
           <SignedInLinks />
-          {/* )
-          } */}
+          ) : (
+          <SignedOutLinks />
+          )
+          }
         </div>
       </div>
     </nav>

@@ -1,57 +1,105 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
+import {AuthContext} from '../auth/Auth';
+import firebase from 'firebase';
+import 'firebase/firestore';
 
-const heroes = [
-  {
-    name: "Deothas",
-    race: "Human",
-    class: "Paladin",
-    hp: "35",
-    ac: "13",
-    level: "5"
-  },
-  {
-    name: "Cylril",
-    race: "Half-elf",
-    class: "Warlock",
-    hp: "23",
-    ac: "12",
-    level: "4"
-  },
-  {
-    name: "Dendril",
-    race: "Orc",
-    class: "Barbarian",
-    hp: "50",
-    ac: "12",
-    level: "5"
+// const heroes = [
+//   {
+//     name: "Deothas",
+//     race: "Human",
+//     class: "Paladin",
+//     hp: "35",
+//     ac: "13",
+//     level: "5"
+//   },
+//   {
+//     name: "Cylril",
+//     race: "Half-elf",
+//     class: "Warlock",
+//     hp: "23",
+//     ac: "12",
+//     level: "4"
+//   },
+//   {
+//     name: "Dendril",
+//     race: "Orc",
+//     class: "Barbarian",
+//     hp: "50",
+//     ac: "12",
+//     level: "5"
+//   }
+// ];
+
+export default function CharList(props) {
+  const [userChars, setUserChars] = useState([]);
+  const [UID, setUID] = useState('');
+  const { userID } = useContext(AuthContext);  
+  // let bUID = UID;
+  let userCharList = [];
+  
+  const queryParam = 'kY8f3I6d3RbMVxArgxM2hxIuebo1'
+  console.log('Initial log: ', queryParam);
+
+  useEffect(()=> {
+    compLoaded() 
+  }, [])
+
+  const compLoaded = async() => {
+    // CHECK IF USER IS CURRENTLY LOGGED IN
+    if (userID != null) {
+      setUID(userID);
+      // bUID = userID;      
+    } else {
+      console.log('User not available');
+    }
+
+    // SET UP ALL THE FIREBASE SHORTFORMS FOR QUERYING
+    const heroes = firebase.firestore().collection('games').doc('kY8f3I6d3RbMVxArgxM2hxIuebo1').collection('heroes');
+    let heroList = [];
+
+    // GET LIST OF GAMES CREATED BY CURRENT USER
+    heroes.get().then((snapshot) => {
+      snapshot.docs.forEach(doc => {
+        console.log(`Name?: `,doc.name);
+        heroList.push(doc);
+        // .data()
+        })
+        // console.log("This is a : " + typeof gameList);
+        setUserChars(heroList);
+        // console.log("State: ", gameList)
+        userCharList = heroList;
+        console.log( userCharList);
+        
+        userChars.map(e => (
+          console.log(`Hero: ${e.name}`)
+        ))
+      })
   }
-];
+  
 
-export default function CharList() {
-  
-  
-  
+
+
   return (
     <div className="col l4 m8 s12 dash-container">
       <h5>Heroes</h5>
       <ul list-style-type="none">
-        {heroes.map(e => (
-          <li key={e.name}>
+        {userChars.map(e => (
+          <li key={e.id}>
             <div className="card horizontal small orange lighten-5 z-depth-2">
               <div className="card-image">
                 <img
                   src="https://i.pinimg.com/originals/57/ca/6d/57ca6d159674aee8d0e01166850dd8e4.jpg"
-                  alt={e.name}
+                  alt={e.data().name}
                 />
               </div>
               <div className="card-stacked">
                 <div className="card-content small left-align">
-                  <span className="char-title">{e.name}</span>
-                  <p>Race: {e.race}</p>
-                  <p>Class: {e.class}</p>
-                  <p>HP: {e.hp}</p>
-                  <p>AC: {e.ac}</p>
-                  <p>Level: {e.level}</p>
+                  <span className="char-title">{e.data().name}</span>
+                  <p>Race: {e.data().race}</p>
+                  <p>Class: {e.data().class}</p>
+                  <p>HP: {e.data().hp}</p>
+                  <p>AC: {e.data().ac}</p>
+                  <p>Level: {e.data().level}</p>
                 </div>
                 <div className="right-align">
                   <div className="btn-flat">
