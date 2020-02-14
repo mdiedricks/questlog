@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import GameDetails from "./GameDetails";
 import CharList from "./CharList";
-import NPCList from "./NPCList";
+import CreepList from "./CreepList";
 
 class DashGame extends Component {
   render() {
@@ -10,7 +10,7 @@ class DashGame extends Component {
         <div className="row">
           <CharList />
           <GameDetails />
-          <NPCList />
+          <CreepList />
         </div>
       </div>
     );

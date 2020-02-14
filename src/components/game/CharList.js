@@ -1,6 +1,4 @@
 import React from "react";
-// import Character from "./cards/Character";
-// import NPCharacter from "./cards/NPCharacter";
 
 const heroes = [
   {
@@ -30,6 +28,9 @@ const heroes = [
 ];
 
 export default function CharList() {
+  
+  
+  
   return (
     <div className="col l4 m8 s12 dash-container">
       <h5>Heroes</h5>

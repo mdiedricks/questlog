@@ -1,7 +1,5 @@
 import React from "react";
 import "../../assets/fighter.jpg";
-// import Character from "./cards/Character";
-// import NPCharacter from "./cards/NPCharacter";
 
 const creeps = [
   {
