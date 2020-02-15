@@ -37,8 +37,8 @@ export default function CharList(props) {
   // let bUID = UID;
   let userCharList = [];
   
-  const queryParam = 'kY8f3I6d3RbMVxArgxM2hxIuebo1'
-  console.log('Initial log: ', queryParam);
+  const queryParam = this.props.match.params;
+  // console.log('Initial log: ', queryParam);
 
   useEffect(()=> {
     compLoaded() 
@@ -54,19 +54,19 @@ export default function CharList(props) {
     }
 
     // SET UP ALL THE FIREBASE SHORTFORMS FOR QUERYING
-    const heroes = firebase.firestore().collection('games').doc('kY8f3I6d3RbMVxArgxM2hxIuebo1').collection('heroes');
+    const heroes = firebase.firestore().collection('games').doc(queryParam).collection('heroes');
     let heroList = [];
 
     // GET LIST OF GAMES CREATED BY CURRENT USER
     heroes.get().then((snapshot) => {
       snapshot.docs.forEach(doc => {
-        console.log(`Name?: `,doc.name);
+        // console.log(doc);
         heroList.push(doc);
         // .data()
         })
         // console.log("This is a : " + typeof gameList);
         setUserChars(heroList);
-        // console.log("State: ", gameList)
+        console.log(heroList);
         userCharList = heroList;
         console.log( userCharList);
         

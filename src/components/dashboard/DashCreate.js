@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import firebase from 'firebase';
 import {AuthContext} from '../auth/Auth';
+// import {AuthProvider} from './auth/Auth';
 import {Link} from 'react-router-dom';
 
 const DashCreate = () => {
@@ -43,6 +44,7 @@ const DashCreate = () => {
   });
 
   const handleSubmit = e => {
+    // debugger;
     e.preventDefault();
     console.log(games);
     games.add({
@@ -51,12 +53,13 @@ const DashCreate = () => {
       storyHook: gameStoryHook,
       uid: UID
     })
-    // .then(function() {
-    //     console.log(`Document: ${gameTitle} successfully written!`);
-    // })
-    // .catch(function(error) {
-    //     console.error("Error writing document: ", error);
-    // });
+    .then(function() {
+        
+      console.log(`Document: ${gameTitle} successfully written!`);
+    })
+    .catch(function(error) {
+      console.error("Error writing document: ", error);
+    });
   };
 
 
@@ -66,7 +69,7 @@ const DashCreate = () => {
           <div className="container row">
             <div className="col l2 m2 s1"></div>
               <div className="col l8 m8 s10">
-                <form onSubmit={() => handleSubmit()} className="white">
+                <form onSubmit={handleSubmit} className="white">
                   <h5 className="grey-text text-darken-3">Create new game</h5>
                   <div className="input-field">
                     <label htmlFor="title">Title</label>

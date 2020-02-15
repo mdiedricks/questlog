@@ -9,6 +9,7 @@ const DashHome = () => {
   const [userGames, setUserGames] = useState([]);
   const [UID, setUID] = useState('');
   const { userID } = useContext(AuthContext);
+  
   // USING MY OWN STATE CONTAINERS
   let bUID = UID
   let userGameList = []
@@ -33,7 +34,7 @@ const DashHome = () => {
     // GET LIST OF GAMES CREATED BY CURRENT USER
     games.where('uid', '==', bUID).get().then((snapshot) => {
       snapshot.docs.forEach(doc => {
-        console.log(doc.id);
+        // console.log(doc.id);
         gameList.push(doc);
         // .data()
         })
@@ -61,7 +62,7 @@ const DashHome = () => {
           <div className="col l6 m8 s10">
           <ul>
             {userGames.map(e => (
-              <Link to={`/game/${e.data().uid}`} key={e.id}>
+              <Link to={`/game/${e.id}`} key={e.id}>
                 <li>
                   <div className="card horizontal small grey lighten-3 z-depth-2">
                     <div className="card-stacked">

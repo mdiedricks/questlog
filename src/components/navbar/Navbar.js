@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import {AuthContext} from '../auth/Auth';
 import firebase from 'firebase';
 
@@ -21,8 +21,6 @@ function Navbar() {
   setUser({...user, user: currUser})
 }
 
-  // new stuff
-
   return (
     <nav className="nav-wrapper grey darken-3">
       <div className="container">
@@ -33,10 +31,10 @@ function Navbar() {
 
         </div>
         <div className="right">
-          {(userID) ? ( 
-          <SignedInLinks />
-          ) : (
+          {(!userID) ? ( 
           <SignedOutLinks />
+          ) : (
+          <SignedInLinks />
           )
           }
         </div>

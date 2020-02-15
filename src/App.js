@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+// import {AuthContext} from './components/auth/Auth';
 import {AuthProvider} from './components/auth/Auth';
 
 import DashHome from "./components/dashboard/DashHome";
@@ -12,33 +13,37 @@ import SignIn2 from "./components/auth/SignIn2";
 import SignUp2 from "./components/auth/SignUp2";
 import PrivateRoute from './PrivateRoute'
 
+const App = () => {
+  // const [UID, setUID] = useState('');
+  // const { userID } = useContext(AuthContext);
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: '',
-      uID: '',
-      isLoggedIn: false,
-    }
-  }
+  // let bUID = UID
 
-  render() {
-    const userProps = {
-      user: this.state.user,
-      uID: this.state.uID,
-      isLoggedIn: this.state.isLoggedIn,
-    }
+  // useEffect(()=> {
+  //   compLoaded() 
+  // }, [])
+
+  // const compLoaded = async() => {
+  //   // CHECK IF USER IS CURRENTLY LOGGED IN
+  //   if (userID != null) {
+  //     setUID(userID);
+  //     bUID = userID;      
+  //   } else {
+  //     console.log('User not available');
+  //   }
+  // }
 
     return (
       <AuthProvider>
         <Router>
           <div className="App">
-            <Navbar user={userProps} />
+            <Navbar />
             <Switch>
-              <Route exact path="/" user={userProps} component={DashLanding} />
-              <PrivateRoute path="/home" user={userProps} component={DashHome} />
-              <Route path="/new-game" component={DashCreate} />
+              <Route exact path="/" component={DashLanding}>
+                {/* {this.props.value.userID ? <Redirect to="/home" /> : <DashLanding />} */}
+              </Route>
+              <PrivateRoute path="/home"  component={DashHome} />
+              <PrivateRoute path="/new-game" component={DashCreate} />
               <PrivateRoute path="/game/:id" component={DashGame} />
               <Route path="/signin" component={SignIn2} />
               <Route path="/signup" component={SignUp2} />
@@ -49,7 +54,6 @@ class App extends Component {
       
     );
   }
-}
 
 
 export default App;
