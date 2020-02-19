@@ -12,7 +12,6 @@ const DashHome = () => {
   
   // USING MY OWN STATE CONTAINERS
   let bUID = UID
-  let userGameList = []
 
   useEffect(()=> {
     compLoaded() 
@@ -38,11 +37,7 @@ const DashHome = () => {
         gameList.push(doc);
         // .data()
         })
-        // console.log("This is a : " + typeof gameList);
         setUserGames(gameList);
-        // console.log("State: ", gameList)
-        userGameList = gameList;
-        // console.log("Variable: ", userGameList);
         
         userGames.map(e => (
           console.log(`Game: ${e.title}`)
@@ -57,6 +52,7 @@ const DashHome = () => {
         <p>You are now on your home dashboard.</p>
         <p>If you have created any games, they will be displayed below.</p>
         <div className="divider"></div>
+        
         <div className="row">
           <div className="col l3 m2 s1"></div>
           <div className="col l6 m8 s10">

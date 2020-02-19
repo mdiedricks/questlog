@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import {useParams} from 'react-router-dom';
 import {AuthContext} from '../auth/Auth';
 import firebase from 'firebase';
 import 'firebase/firestore';
@@ -35,10 +36,8 @@ export default function CharList(props) {
   const [UID, setUID] = useState('');
   const { userID } = useContext(AuthContext);  
   // let bUID = UID;
-  let userCharList = [];
-  
-  const queryParam = this.props.match.params;
-  // console.log('Initial log: ', queryParam);
+  const queryParam = useParams();
+  const thisGameId = queryParam.id;
 
   useEffect(()=> {
     compLoaded() 
@@ -54,7 +53,7 @@ export default function CharList(props) {
     }
 
     // SET UP ALL THE FIREBASE SHORTFORMS FOR QUERYING
-    const heroes = firebase.firestore().collection('games').doc(queryParam).collection('heroes');
+    const heroes = firebase.firestore().collection('games').doc(thisGameId).collection('heroes');
     let heroList = [];
 
     // GET LIST OF GAMES CREATED BY CURRENT USER
@@ -66,9 +65,7 @@ export default function CharList(props) {
         })
         // console.log("This is a : " + typeof gameList);
         setUserChars(heroList);
-        console.log(heroList);
-        userCharList = heroList;
-        console.log( userCharList);
+        // console.log(heroList);
         
         userChars.map(e => (
           console.log(`Hero: ${e.name}`)
@@ -76,9 +73,6 @@ export default function CharList(props) {
       })
   }
   
-
-
-
   return (
     <div className="col l4 m8 s12 dash-container">
       <h5>Heroes</h5>
