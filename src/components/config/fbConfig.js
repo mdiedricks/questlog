@@ -1,16 +1,17 @@
-import * as firebase from 'firebase/app';
+// import * as firebase from 'firebase/app';
+import app from 'firebase/app';
 import 'firebase/auth';
 
 // Initialize Firebase
-const fbApp = firebase.initializeApp({
-  apiKey: 'AIzaSyBcqHXwmpA0zbZmGNWYyBsTU98_mt9M-c0',
-  authDomain: 'questlog-2873d.firebaseapp.com',
-  databaseURL: 'https://questlog-2873d.firebaseio.com',
-  projectId: 'questlog-2873d',
-  storageBucket: 'questlog-2873d.appspot.com',
-  messagingSenderId: '294622011601',
-  appId: '1:294622011601:web:22927821c1155e135825f0',
-  measurementId: 'G-T7MPNCHDZN'
+const fbApp = app.initializeApp({
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID
 });
 
 // const fireConfig = firebase.initializeApp(firebaseConfig)
