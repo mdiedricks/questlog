@@ -1,34 +1,14 @@
-import React, { useContext, useState, useEffect } from "react";
-import firebase from 'firebase';
-import {AuthContext} from '../auth/Auth';
-// import {AuthProvider} from './auth/Auth';
-import {Link} from 'react-router-dom';
+import React, { useState } from "react";
+import firebase from 'firebase/app';
+// import {useHistory} from 'react-router-dom';
 
-const DashCreate = () => {
-  const { userID } = useContext(AuthContext)
-  const [UID, setUID] = useState('');
+const db = firebase.firestore().collection('games');
+
+const Create = () => {
   const [gameTitle, setGameTitle] = useState('');
   const [gameLocation, setGameLocation] = useState('');
   const [gameStoryHook, setGameStoryHook] = useState('');
-  
-  let bUID = UID
-  
-  useEffect(()=> {
-    compLoaded() 
-  }, []) 
-
-  const compLoaded = async() => {
-    // CHECK IF USER IS CURRENTLY LOGGED IN
-    if (userID != null) {
-      setUID(userID);
-      bUID = userID;
-    } else {
-      console.log('User not available');
-    }
-  }
-
-  //DECLARING FIREBASE SHORTFORMS FOR POSTING
-  const games = firebase.firestore().collection('games');
+    
 
   const handleTitle = ((e) => {
     setGameTitle(e.target.value)
@@ -44,46 +24,44 @@ const DashCreate = () => {
   });
 
   const handleSubmit = e => {
-    // debugger;
     e.preventDefault();
-    console.log(games);
-    games.add({
+    db.add({
       title: gameTitle,
       location: gameLocation,
       storyHook: gameStoryHook,
-      uid: UID
     })
     .then(function() {
-        
       console.log(`Document: ${gameTitle} successfully written!`);
+      
     })
     .catch(function(error) {
       console.error("Error writing document: ", error);
     });
   };
 
-
     return (
       <div>
         <div className="container">
-          <div className="container row">
-            <div className="col l2 m2 s1"></div>
-              <div className="col l8 m8 s10">
-                <form onSubmit={handleSubmit} className="white">
-                  <h5 className="grey-text text-darken-3">Create new game</h5>
+              <section className="card form">
+                <form onSubmit={handleSubmit} >
+                  <h1 className="form-title">Create new game</h1>
                   <div className="input-field">
-                    <label htmlFor="title">Title</label>
+                    <label htmlFor="title" className="form-text">Title</label>
                     <input
+                      className="form-input"
                       type="text"
                       id="title"
+                      placeholder="My Next Adventure..."
                       value = {gameTitle}
                       required
                       onChange={handleTitle}
                     />
                   </div>
                   <div className="input-field">
-                    <label htmlFor="location">Location</label>
+                    <label htmlFor="location" className="form-text">Location</label>
                     <input
+                      className="form-input"
+                      placeholder="Over the hills..."
                       type="text"
                       id="location"
                       value={gameLocation}
@@ -92,8 +70,12 @@ const DashCreate = () => {
                     />
                   </div>
                   <div className="input-field">
-                    <label htmlFor="storyHook">Story hook</label>
+                    <label htmlFor="storyHook" className="form-text">Story hook</label>
                     <textarea
+                      className="form-input"
+                      placeholder="So a wizard walks into a bar..."
+                      rows="4"
+                      cols="50"
                       type="text"
                       id="storyHook"
                       value={gameStoryHook}
@@ -102,15 +84,13 @@ const DashCreate = () => {
                     />
                   </div>
                   <div className="input-field">
-                    <button className="btn pink lighten-1 z-depth-0">Create</button>
+                    <button className="button">Create</button>
                   </div>
                 </form>
-              </div>     
-            <div className="col l2 m2 s1"></div>
-          </div>
+              </section>     
         </div>
       </div>
     );
 }
 
-export default DashCreate;
+export default Create;

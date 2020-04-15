@@ -1,43 +1,364 @@
-.App {
-  text-align: center;
-  background-color:brown lighten-5;
-  width: 100vw;
-  height: 100vh;
-  position: absolute
+
+/* CSS NOTES */
+/* QUEST LOG
+  Master Styles
+  Author: Michael Diedricks (michael.diedricks@gmail.com)
+*/
+/* #C79F6B
+#B36040
+#564639
+#F3E5C8 */
+
+/* GLOBAL SETTINGS */
+:root{
+  --prim-1: #205047;
+  --prim-2: #534279;
+  --col-1: #F3E5C8;
+  --col-2: #564639;
+  --col-3:  #B36040;
+  --col-4:  #C79F6B;
 }
 
-.App-header {
-  background-color: #282c34;
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+html,
+body{
+  width: 100%;
+  height: 100%;
+  background-color: var( --col-4);
+  font-family: 'Vollkorn', serif;
+}
+
+.App{
+  position: relative;
   min-height: 100vh;
+  padding-bottom: 2rem;
+}
+
+a{
+  color: var(--col-2);
+  text-decoration: none;
+}
+a:hover{
+  color: var(--col-1);
+  text-decoration: none;
+}
+
+
+/* BASE STYLES */
+.container{
+  margin: 0 5%;
+}
+
+.main{
+  padding-bottom: 6rem;
+}
+
+.t1{
+  font-size: 4rem;
+  padding-bottom: 2rem;
+}
+.t2{
+  font-size: 1.5rem;
+  padding-bottom: 2rem;
+
+}
+.t3{
+  font-size: 1.2rem;
+  padding-bottom: 2rem;
+
+}
+.hor-bar{
+  height: 2px;
+  width: 50%;
+  background: var(--col-2);
+  margin: 2rem auto;
+}
+/* NAVIGATION */
+nav{
+  background-color: var(--col-4);
+  padding: 1.3rem 0;
+}
+
+.nav-bar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo{
+  font-size: 1.7rem;
+}
+
+.nav-links{
+}
+
+/* PAGE STRUCTURE */
+
+/* home page */
+.welcome{
+  display: flex;
+  flex-direction: row;
+  height: 40%;
+  color: white;
+  padding: 2rem 0 0 0;
+  color: var(--col-2);
+
+}
+.welcome img{
+  height: 250px;
+  padding-right:3rem ;
+}
+
+.game-list{
+  padding: 1rem;
+
+}
+.game-list li{
+  list-style: none;
+  padding: 1rem;
+  color: var(--col-3);
+}
+
+.card{
+  width: auto;
+  margin: 0 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: var(--col-1);
+  background: 
+    linear-gradient(135deg, transparent 10px, var(--col-1) 0) top left,
+		linear-gradient(225deg, transparent 10px, var(--col-1) 0) top right,
+		linear-gradient(315deg, transparent 10px, var(--col-1) 0) bottom right,
+    linear-gradient(45deg,  transparent 10px, var(--col-1) 0) bottom left;
+  background-size: 51% 51%;
+  background-repeat: no-repeat;
+  background-image: 
+    radial-gradient(circle at 0 0, rgba(204,0,0,0) 14px, var(--col-1) 15px),
+    radial-gradient(circle at 100% 0, rgba(204,0,0,0) 14px, var(--col-1) 15px),
+    radial-gradient(circle at 100% 100%, rgba(204,0,0,0) 14px, var(--col-1) 15px),
+    radial-gradient(circle at 0 100%, rgba(204,0,0,0) 14px, var(--col-1) 15px);
+  box-shadow: 5px 5px 50px 2px 0.3 #464545;
+}
+.card-image img{
+  height: 5rem;
+  margin: 0 2rem 0 0;
+}
+.card-title{
+  color: var(--col-4);
+}
+.card-title:hover{
+  color: var(--col-2);
+}
+
+.card-text{
+  color: var(--col-4);
+}
+
+/* create */
+.form{
+  margin: 3rem auto;
+  padding: 2rem;
+  min-width: 70vw;
+}
+form{
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 0 auto;
+}
+.form-title{
+  color: var(--col-4);
+  display: block;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+.input-field{
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-text{
+  color: var(--col-4);
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+input{
+  border-radius: 10px;
+  height: 2rem;
+  padding: 0.5rem;
+}
+textarea{
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+.form-input{
+  display: block;
+}
+.button{
+  border: none;
+  text-decoration: none;
+  color: var(--col-2);
+  font-size: 1.2rem;
+  margin: 0.5rem;
+  background: var(--col-4);
+  background: 
+    linear-gradient(135deg, transparent 10px, var(--col-4) 0) top left,
+		linear-gradient(225deg, transparent 10px, var(--col-4) 0) top right,
+		linear-gradient(315deg, transparent 10px, var(--col-4) 0) bottom right,
+    linear-gradient(45deg,  transparent 10px, var(--col-4) 0) bottom left;
+  background-size: 51% 51%;
+  background-repeat: no-repeat;
+  background-image: 
+    radial-gradient(circle at 0 0, rgba(204,0,0,0) 8px, var(--col-4) 8px),
+    radial-gradient(circle at 100% 0, rgba(204,0,0,0) 8px, var(--col-4) 8px),
+    radial-gradient(circle at 100% 100%, rgba(204,0,0,0) 8px, var(--col-4) 8px),
+    radial-gradient(circle at 0 100%, rgba(204,0,0,0) 8px, var(--col-4) 8px);
+  box-shadow: 5px 5px 50px 2px 0.3 #464545;
+  padding: 0.8rem 1.3rem; 
+}
+.button:hover{
+  background: var(--col-3);
+  background: 
+    linear-gradient(135deg, transparent 10px, var(--col-3) 0) top left,
+		linear-gradient(225deg, transparent 10px, var(--col-3) 0) top right,
+		linear-gradient(315deg, transparent 10px, var(--col-3) 0) bottom right,
+    linear-gradient(45deg,  transparent 10px, var(--col-3) 0) bottom left;
+  background-size: 51% 51%;
+  background-repeat: no-repeat;
+  background-image: 
+    radial-gradient(circle at 0 0, rgba(204,0,0,0) 8px, var(--col-3) 8px),
+    radial-gradient(circle at 100% 0, rgba(204,0,0,0) 8px, var(--col-3) 8px),
+    radial-gradient(circle at 100% 100%, rgba(204,0,0,0) 8px, var(--col-3) 8px),
+    radial-gradient(circle at 0 100%, rgba(204,0,0,0) 8px, var(--col-3) 8px);
+  box-shadow: 5px 5px 50px 2px 0.3 #464545;
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-textarea {
-  height: 20vh;
-}
+/* game */
 
-.dash-container {
-  height: 100%;
-  position: relative;
-}
+.game-content{
+  display:grid;
+  grid-template-columns: 3.7fr 0.5rem 4fr 0.5rem 3.7fr;
 
-.card.small{
-  height: 200px
 }
-
-.card-content.small{
-  padding: 25px
+.characters {
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  color: var(--col-2);
 }
-
+.characters .t3{
+  padding-bottom: 0.3rem;
+}
+.character{
+  margin: 0.5rem 0;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.5rem;
+}
+.character input{
+  width: 80%;
+  border: none;
+  background-color: transparent;
+  color: var(--col-2);
+  padding: 0;
+}
 .char-title{
-  font-size:1.3rem
+  font-size: 1.2rem;
+}
+.char-text{
+  font-size: 0.8rem;
+}
+.char-stats{
+  margin: 0.5rem;
+  display: flex;
+}
+.stat{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin: 0 0.3rem 0 0;
+}
+.stat-icon{
+  height: 15px;
+  margin: 0.2rem;
+}
+.controls{
+  display: block;
+  margin: auto;
+}
+.controls button{
+  margin: 0 0.5rem;
+  border: none;
+  background-color: var(--col-4);
+  padding: 0.3rem;
+  border-radius: 5px;
+  color: var(--col-1);
+}
+.game-detail{
+  width: auto;
+  margin: 0;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.game-text{
+  
+}
+
+
+/* FOOTER */
+footer{
+  background-color: var(--nav-grey);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: auto; 
+}
+.footer{
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+/* MEDIA QUERIES */
+@media screen and (min-width: 800px){
+  .App{
+    min-height: 100vh;
+  }
+  
+  .container{
+    margin: 0 3%;
+  }
+  
+  /* home section */
+
+/* create */
+
+/* game */
+
+
+/* footer */
+  footer{
+    background-color: var(--nav-grey);
+    height: auto;
+  }
+}
+
+
+/* TEST BUILD STYLES */
+
+.test{
+  border: 1px solid black;
+  /* background-color: var(--icon-grey); */
 }
