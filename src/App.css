@@ -282,6 +282,22 @@ textarea{
   margin: 0.5rem;
   display: flex;
 }
+.newChar{
+  position: absolute;
+  margin: 50px auto;
+  left: 38%;
+  right: 38%;
+}
+.screen{
+  background-color: rgba(10,10,10,0.7);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 .stat{
   display: flex;
   flex-direction: row;
