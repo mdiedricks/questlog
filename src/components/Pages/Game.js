@@ -1,65 +1,13 @@
 import React, { Component } from "react";
-import {useParams} from 'react-router-dom';
-
+import { withRouter } from 'react-router-dom';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 import GameDetails from "../Cards/GameDetails";
-import CharList from "../Cards/CharList";
-import CreepList from "../Cards/CreepList";
+import CharNew from '../Cards/CharNew';
 
-// const heroes = [
-//   {
-//     name: "Deothas",
-//     race: "Human",
-//     class: "Paladin",
-//     hp: "35",
-//     ac: "13",
-//     level: "5"
-//   },
-//   {
-//     name: "Cylril",
-//     race: "Half-elf",
-//     class: "Warlock",
-//     hp: "23",
-//     ac: "12",
-//     level: "4"
-//   },
-//   {
-//     name: "Dendril",
-//     race: "Orc",
-//     class: "Barbarian",
-//     hp: "50",
-//     ac: "12",
-//     level: "5"
-//   }
-// ];
-// const creeps = [
-//   {
-//     name: "Saruman",
-//     race: "Human",
-//     class: "Sorcerer",
-//     hp: "60",
-//     ac: "16",
-//     level: "12"
-//   },
-//   {
-//     name: "Shagrath",
-//     race: "Orc",
-//     class: "Warrior",
-//     hp: "30",
-//     ac: "9",
-//     level: "6"
-//   },
-//   {
-//     name: "Gothmog",
-//     race: "Orc",
-//     class: "Barbarian",
-//     hp: "48",
-//     ac: "14",
-//     level: "9"
-//   }
-// ];
+const db = firebase.firestore().collection('games');
+let heroList = [];
 
 class Game extends Component {
   constructor(){
@@ -67,38 +15,96 @@ class Game extends Component {
     this.state = {
       gameData:{},
       heroes: [],
-      creeps: [],
       gameLog: [],
-      gameId: useParams()
+      gameId: ''
     }
-    // this.handleAddCharacter = this.handleAddCharacter.bind(this)
-    // this.handleDelCharacter = this.handleDelCharacter.bind(this)
   }
-
-  // get data from firebase and update the state
+  
   componentDidMount() {
-    const db = firebase.firestore().collection('games').doc(this.state.gameId).collection('heroes');
-
+    //GET heroes from database
+    db.doc(this.props.match.params.id).collection('heroes').get()
+    .then(snapshot =>{
+      snapshot.forEach(doc => {
+        heroList.push(doc.data());
+        heroList[heroList.length-1].id = doc.id;
+      },)
+      this.setState({heroes: heroList})
+    })
+    this.setState({ gameId: this.props.match.params.id})
   }
+  
+  // Methods - character
+  handleCreateCharacter = (e, name, level, race, cClass, hp, ac) => {
+    e.preventDefault();
+    db.doc(this.props.match.params.id).collection('heroes').add({
+        name: name,
+        level: level,
+        race: race,
+        class: cClass,
+        hp: hp,
+        ac: ac
+    })
+    .catch(err=>{
+      console.log('There was and error createing your character', err)
+    })
+    .then(()=>{
 
-
+      console.log('Char updated')
+    },)    
+  }
+  handleUpdateCharacter = (id) =>{
+    console.log(`Open CharUpdate modal: ${id}`);
+  }
+  handleDelCharacter = (index, id) => {
+    db.doc(this.props.match.params.id).collection('heroes')
+      .doc(id).delete()
+      .then(()=>{
+        let curHeroes = this.state.heroes;
+        curHeroes.splice(index, 1);
+        this.setState({heroes: curHeroes});
+        console.log('Char deleted')
+      },)
+      .catch(err=>{
+        console.log("Error removing document: ", err)
+      })
+  }
 
   render() {
-
   // update a variable with some jsx to render to the dom when the component updates
-  
-  
+
+  let heroes = this.state.heroes.map((char, id, index) => {
+    return(
+      <div key={id}>
+        <h6>{char.name}</h6>
+        <p>{char.race}</p>
+        <button onClick={()=>this.handleDelCharacter(index, char.id)}>X</button>
+        <button onClick={() => this.handleUpdateCharacter(char.id)}>E</button>
+      </div>
+    )
+  })
+  let newCharButton = (<button onClick={()=>this.handleCreateCharacter()}>Add</button>)
+
+  if (this.state.heroes.length>4){
+      newCharButton = <div></div>
+  }
+
 
     return (
       <section className="container game-content">
-          <CharList />          
+          <div className="characters">
+            <h1>Heroes</h1>
+            {heroes}
+            {newCharButton}
+          </div>       
           <div className="fragment"></div>
-          <GameDetails />
+          {/* <GameDetails /> */}
+          <CharNew 
+            newChar={(event)=>this.handleCreateCharacter(event)}
+            gameId={this.state.gameId}/>
           <div className="fragment"></div>
-          <CreepList />
       </section>
     );
   }
 }
 
-export default Game;
+export default withRouter(Game);

@@ -6,8 +6,6 @@ import 'firebase/firestore';
 import scroll from '../../assets/scroll.svg';
 import sword from '../../assets/sword.svg';
 
-// import GameCard from '../Cards/GameCard'
-
 firebase.initializeApp({
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,

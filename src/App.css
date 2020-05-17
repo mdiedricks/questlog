@@ -281,7 +281,6 @@ textarea{
 .char-stats{
   margin: 0.5rem;
   display: flex;
-<<<<<<< HEAD
 }
 .stat{
   display: flex;
@@ -331,73 +330,6 @@ footer{
   justify-content: center;
   padding: 1rem 0;
 }
-=======
-}
-.newChar{
-  position: absolute;
-  margin: 50px auto;
-  left: 38%;
-  right: 38%;
-}
-.screen{
-  background-color: rgba(10,10,10,0.7);
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-.stat{
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  margin: 0 0.3rem 0 0;
-}
-.stat-icon{
-  height: 15px;
-  margin: 0.2rem;
-}
-.controls{
-  display: block;
-  margin: auto;
-}
-.controls button{
-  margin: 0 0.5rem;
-  border: none;
-  background-color: var(--col-4);
-  padding: 0.3rem;
-  border-radius: 5px;
-  color: var(--col-1);
-}
-.game-detail{
-  width: auto;
-  margin: 0;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.game-text{
-  
-}
-
-
-/* FOOTER */
-footer{
-  background-color: var(--nav-grey);
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: auto; 
-}
-.footer{
-  display: flex;
-  justify-content: center;
-  padding: 1rem 0;
-}
->>>>>>> 4dee5fc0ca4ddf408d733af8112bb9ee98464625
 
 /* MEDIA QUERIES */
 @media screen and (min-width: 800px){
