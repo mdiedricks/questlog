@@ -4,7 +4,9 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 import GameDetails from "../Cards/GameDetails";
+import CharCard from '../Cards/CharCard';
 import CharNew from '../Cards/CharNew';
+import Music from '../Cards/Music';
 
 const db = firebase.firestore().collection('games');
 let heroList = [];
@@ -16,12 +18,14 @@ class Game extends Component {
       gameData:{},
       heroes: [],
       gameLog: [],
-      gameId: ''
+      gameId: '',
+      charLive:[],
+      dpUpdated: false
     }
   }
   
   componentDidMount() {
-    //GET heroes from database
+    //GET HEROES FROM DB
     db.doc(this.props.match.params.id).collection('heroes').get()
     .then(snapshot =>{
       snapshot.forEach(doc => {
@@ -32,29 +36,8 @@ class Game extends Component {
     })
     this.setState({ gameId: this.props.match.params.id})
   }
-  
-  // Methods - character
-  handleCreateCharacter = (e, name, level, race, cClass, hp, ac) => {
-    e.preventDefault();
-    db.doc(this.props.match.params.id).collection('heroes').add({
-        name: name,
-        level: level,
-        race: race,
-        class: cClass,
-        hp: hp,
-        ac: ac
-    })
-    .catch(err=>{
-      console.log('There was and error createing your character', err)
-    })
-    .then(()=>{
 
-      console.log('Char updated')
-    },)    
-  }
-  handleUpdateCharacter = (id) =>{
-    console.log(`Open CharUpdate modal: ${id}`);
-  }
+  // CHARACTER METHODS
   handleDelCharacter = (index, id) => {
     db.doc(this.props.match.params.id).collection('heroes')
       .doc(id).delete()
@@ -72,37 +55,37 @@ class Game extends Component {
   render() {
   // update a variable with some jsx to render to the dom when the component updates
 
-  let heroes = this.state.heroes.map((char, id, index) => {
+  // current characters
+  let heroes = this.state.heroes.map((char) => {
     return(
-      <div key={id}>
-        <h6>{char.name}</h6>
-        <p>{char.race}</p>
-        <button onClick={()=>this.handleDelCharacter(index, char.id)}>X</button>
-        <button onClick={() => this.handleUpdateCharacter(char.id)}>E</button>
-      </div>
+        <CharCard key={char.id}
+          character={char}
+          gameId={this.state.gameId}
+          delete={()=>this.handleDelCharacter(char.index, char.id)}
+          />       
     )
   })
-  let newCharButton = (<button onClick={()=>this.handleCreateCharacter()}>Add</button>)
 
+// new character 
+  let newChar = (
+    <CharNew 
+      gameId={this.state.gameId}/>
+  )
   if (this.state.heroes.length>4){
-      newCharButton = <div></div>
+      newChar = <div></div>
   }
 
-
     return (
-      <section className="container game-content">
-          <div className="characters">
-            <h1>Heroes</h1>
-            {heroes}
-            {newCharButton}
-          </div>       
-          <div className="fragment"></div>
+      <main className="container game-content">
+        <section className="characters"> 
+          {heroes}
+          {newChar}
+        </section>
+        <section className="controls">
           {/* <GameDetails /> */}
-          <CharNew 
-            newChar={(event)=>this.handleCreateCharacter(event)}
-            gameId={this.state.gameId}/>
-          <div className="fragment"></div>
-      </section>
+          {/* <Music /> */}
+        </section>
+      </main>
     );
   }
 }

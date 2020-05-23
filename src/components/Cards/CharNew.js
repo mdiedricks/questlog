@@ -1,14 +1,19 @@
 import React, {useState} from 'react'
 import firebase from 'firebase/app';
+// import { useDispatch } from 'react-redux';
+// import { addChar } from '../../actions';
+
 
 function CharNew(props) {
-
     const [charName, setCharName] = useState('');
     const [charLevel, setCharLevel] = useState(1)
     const [charRace, setCharRace] = useState('Human')
     const [charClass, setCharClass] = useState('Paladin')
     const [charHp, setCharHp] = useState(0)
     const [charAc, setCharAc] = useState(0)
+
+    // const chars = useSelector(state => state.chars) ADD TO GAME
+    // const dispatch = useDispatch();
 
 // Handlers
     const handleNameChange = (e) => {
@@ -35,14 +40,15 @@ function CharNew(props) {
 
     const handleCreateCharacter = (e) =>{
         e.preventDefault();
-        db.doc(props.gameId).collection('heroes').add({
+        let newChar = {
             name: charName,
             level: charLevel,
             race: charRace,
             class: charClass,
             hp: charHp,
             ac: charAc
-        },)
+        };
+        db.doc(props.gameId).collection('heroes').add(newChar,)
         .then(()=>{
             setCharName('');
             setCharLevel(1);
@@ -52,9 +58,10 @@ function CharNew(props) {
             setCharAc(0);
         },)
         .then(()=>{
-            console.log('Char created')
+            // dispatch(addChar(newChar))
+            // console.log('Char created')
+            window.location.reload(false);
         },)
-        
     }
     
     

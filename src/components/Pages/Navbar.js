@@ -11,7 +11,6 @@ function Navbar() {
           </span>
           <span>
             <Link to="/create" className="nav-links">Create</Link>
-
           </span>
       </div>
     </nav>
