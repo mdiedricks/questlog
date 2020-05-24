@@ -61,7 +61,7 @@ function CharCard(props) {
     return (
         <div className="char-card character" name={props.character.id}>
             <form action="submit">
-                <div>
+                <div className="column">
                     <input  type="text" 
                         id="name" 
                         placeholder="Name"

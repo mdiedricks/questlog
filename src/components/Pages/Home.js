@@ -19,6 +19,7 @@ firebase.initializeApp({
 const db = firebase.firestore().collection('games');
 let gameList = [];
 
+
 const Home = () => {
   const [games, setGames] = useState([]);
   
@@ -31,45 +32,60 @@ const Home = () => {
       setGames(gameList)
       })
   }
+  const handleGameDel = (id) =>{
+    db.doc(id).delete()
+    .then(()=>{
+      console.log('Game deleted')
+    })
+    .then(()=>{
+    let curGames = games;
+    let thisGameId = id;
+    let newGames = curGames.filter(game => {
+      return game.id !== thisGameId;
+    })
+    setGames(newGames); 
+    })
+  }
 
   useEffect(() => getGames(), [])
 
   const gameCards = games.map((e, index) => (
       <li key={index}>
-        <div className="card">
+        <section className="card game-card">
             <div className="card-image">
               <img src={sword} alt="Enter battle!"/>
             </div>
-            <div className="card-content">
+            <div >
               <Link to={`/game/${e.id}`} >
                 <span className="t2 card-title">{e.data().title}</span>
-              </Link><br></br><br></br>
-              <span className="t3 card-text">Location: {e.data().location}</span><br></br>
-              <span className="t3 card-text">Story Hook: {e.data().storyHook}</span>
+              </Link>
+              <span className="t4 card-text">{e.data().storyHook}</span>
+              <span className="t5 card-location">{e.data().location}</span>
             </div>
-        </div>
+            <button className="button char-btn game-delete" onClick={()=>handleGameDel(e.id)}>X</button>
+        </section>
       </li>  
     )
   )
   
     return (
       <div className="container">
-        <section className="jumbotron">
+        <div className="jumbotron">
           <img src={scroll} alt="All for one, and one for all!"/>
-          <div className="cta">
-            <p className="t1">Welcome to Questlog</p>
-            <p className="t2">Track your players easily and accurately without complictaed UIs, unnecessary accessories and buttons you're not even sure work.</p>
-            <p className="t3">Select from a game below or create a new one.</p>
-          </div>
-        </section>
+          <section className="cta">
+            <span className="t1 jumbo-title">Welcome to Questlog</span>
+            <span className="t2 jumbo-sub">Track your players easily and accurately without complictaed UIs, unnecessary accessories and buttons you're not even sure work.</span>
+            <span className="t3">Select from a game below or create a new one.</span>
+          </section>
+        </div>
         
         <div className="hor-bar"></div>
         
-        <section className="game-list">
+        <div className="game-list">
           <ul>
             {gameCards}
           </ul>
-        </section>
+        </div>
       </div>
     );
 }

@@ -67,8 +67,8 @@ function CharNew(props) {
     
     return (
         <div className="char-card character">
-            <form action="submit" onSubmit={handleCreateCharacter}>
-                <div>
+            <form action="submit" >
+                <div className="column">
                     <input  type="text" 
                             id="name" 
                             placeholder="Name"
@@ -123,7 +123,7 @@ function CharNew(props) {
                 </section>
             </form>
             <div>
-                <button className="button char-btn">+</button>
+                <button className="button char-btn" onClick={handleCreateCharacter}>+</button>
             </div>
         </div>
     )

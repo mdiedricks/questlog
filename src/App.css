@@ -11,13 +11,6 @@
 
 /* GLOBAL SETTINGS */
 :root{
-  --prim-1: #205047;
-  --prim-2: #534279;
-  --col-1: #F3E5C8;
-  --col-2: #564639;
-  --col-3:  #B36040;
-  --col-4:  #C79F6B;
-
   --back-1: #f9f4ef;
   --card-1: #eaddcf;
   --card-2: #8c7851;
@@ -62,34 +55,31 @@ a:hover{
   margin: 0 15%;
 }
 
-.main{
-  padding-bottom: 6rem;
-}
-
 .t1{
   font-size: 4rem;
-  padding-bottom: 2rem;
+  /* padding-bottom: 2rem; */
 }
 .t2{
   font-size: 1.5rem;
-  padding-bottom: 2rem;
+  /* padding-bottom: 2rem; */
 
 }
 .t3{
   font-size: 1.2rem;
-  padding-bottom: 2rem;
+  /* padding-bottom: 2rem; */
 }
 .t4{
-  padding-bottom: 2rem;
+  font-size: 1rem;
+  /* padding-bottom: 2rem; */
 }
 .t5{
   font-size: 0.8rem;
-  padding-bottom: 2rem;
+  /* padding-bottom: 2rem; */
 }
 .hor-bar{
   height: 2px;
   width: 50%;
-  background: var(--back-1);
+  background: var(--illus-1);
   margin: 2rem auto;
 }
 /* NAVIGATION */
@@ -124,14 +114,19 @@ nav{
   padding-right:3rem ;
   color: var(--illus-1);
 }
-
+.jumbo-title{
+  display: block;
+  margin-bottom: 1.5rem;
+}
+.jumbo-sub{
+  display: block;
+  margin-bottom: 1rem;
+}
 .game-list{
   padding: 1rem;
-
 }
 .game-list li{
   list-style: none;
-  padding: 1rem;
   color: var(--illus-1);
 }
 
@@ -160,13 +155,26 @@ nav{
   margin: 0 2rem 0 0;
 }
 .card-title{
+  display: block;
   color: var(--card-2);
+  margin-bottom: 1rem;
 }
 .card-title:hover{
   color: var(--illus-2);
 }
 .card-text{
+  display: block;
   color: var(--card-2);
+  margin-bottom: 1rem;
+}
+.card-location{
+  color: var(--illus-1);
+}
+.game-card{
+  justify-content: flex-start;
+}
+.game-delete{
+  align-self: flex-end;
 }
 
 
@@ -263,12 +271,13 @@ textarea:focus{
 
 
 
-/* game */
+/* GAME */
 .game-content{
   display:grid;
-  grid-template-rows: 40% auto 60%; 
+  grid-template-rows: 30% 60%; 
   row-gap: 15px; 
   border: 1px solid #ccc;
+  height: 90vh;
 }
 .characters {
   display: flex; 
@@ -276,7 +285,7 @@ textarea:focus{
   align-items: center;
   justify-content: flex-start;
   color: var(--illus-2);
-  
+  height: 30%;
 }
 .character{
   margin: 0.5rem 1%;
@@ -287,12 +296,12 @@ textarea:focus{
 .char-stat input{
   border: none;
   padding: 0;
-  width: 30px;
 }
 .char-name{
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: var(--illus-2);
-  width: 70px;
+  width: 80%;
+  padding: 0;
 }
 .char-label{
   font-size: 0.6rem;
@@ -323,6 +332,9 @@ textarea:focus{
 .stat-icon{
   height: 15px;
   margin: 0.2rem;
+}
+.char-btn{
+  font-size: 0.6rem;
 }
 .column{
   display: flex;
@@ -364,27 +376,45 @@ select{
 
 /* GAME CONTROLS */
 .controls{
-  display: block;
-  margin: auto;
-}
-.controls button{
-  margin: 0 0.5rem;
-  border: none;
-  background-color: var(--col-4);
-  padding: 0.3rem;
-  border-radius: 5px;
-  color: var(--col-1);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
 }
 .game-detail{
-  width: auto;
+  width: 79%;
   margin: 0;
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 }
 .game-text{
   
+}
+
+.music{
+  width: 19%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.music-box{
+  height: auto;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+.music-box img{
+  width: 70%;
+  height: 70%;
+  margin-bottom: 0.7rem;
+}
+.music-text{
+  color: var(--illus-1);
 }
 
 

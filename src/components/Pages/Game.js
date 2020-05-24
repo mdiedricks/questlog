@@ -53,9 +53,7 @@ class Game extends Component {
   }
 
   render() {
-  // update a variable with some jsx to render to the dom when the component updates
-
-  // current characters
+  // CURRENT CHARACTERS
   let heroes = this.state.heroes.map((char) => {
     return(
         <CharCard key={char.id}
@@ -65,8 +63,7 @@ class Game extends Component {
           />       
     )
   })
-
-// new character 
+// NEW CHARACTER 
   let newChar = (
     <CharNew 
       gameId={this.state.gameId}/>
@@ -82,7 +79,7 @@ class Game extends Component {
           {newChar}
         </section>
         <section className="controls">
-          <GameDetails /> 
+          <GameDetails gameId={this.state.gameId}/> 
           <Music />
         </section>
       </main>
