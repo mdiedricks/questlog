@@ -273,25 +273,19 @@ textarea:focus{
 
 /* GAME */
 .game-content{
-  display:grid;
-  grid-template-rows: 30% 60%; 
-  row-gap: 15px; 
-  border: 1px solid #ccc;
-  height: 90vh;
+  display: grid;
+  grid-template-rows: 1fr 2.6fr;
+  grid-row-gap: 10px;
 }
 .characters {
-  display: flex; 
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: 10px;
   color: var(--illus-2);
-  height: 30%;
 }
 .character{
-  margin: 0.5rem 1%;
   flex-direction: column;
   align-items: flex-start;
-  width: 18%;
 }
 .char-stat input{
   border: none;
@@ -313,12 +307,13 @@ textarea:focus{
 .char-stats{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .char-stat{
   margin: 0.5rem;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 .char-stat label{
   font-size: 0.6rem;
@@ -348,6 +343,7 @@ select{
   border: none;
   background-color: var(--card-1);
   color: var(--illus-1);
+  font-size: 0.8rem;
 }
 .char-card{
   padding: 1rem;
@@ -376,14 +372,11 @@ select{
 
 /* GAME CONTROLS */
 .controls{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 100%;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-column-gap: 10px;
 }
 .game-detail{
-  width: 79%;
-  margin: 0;
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -393,7 +386,6 @@ select{
 }
 
 .music{
-  width: 19%;
   display: flex;
   flex-direction: column;
   align-items: center;

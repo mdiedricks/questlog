@@ -10,6 +10,7 @@ import Music from '../Cards/Music';
 
 const db = firebase.firestore().collection('games');
 let heroList = [];
+let tempGameData = {};
 
 class Game extends Component {
   constructor(){
@@ -18,9 +19,7 @@ class Game extends Component {
       gameData:{},
       heroes: [],
       gameLog: [],
-      gameId: '',
-      charLive:[],
-      dpUpdated: false
+      charLive:[]
     }
   }
   
@@ -35,6 +34,15 @@ class Game extends Component {
       this.setState({heroes: heroList})
     })
     this.setState({ gameId: this.props.match.params.id})
+    //GET GAME INFO FROM DB
+    db.doc(this.props.match.params.id).get()
+      .then(snapshot=>{
+        tempGameData = snapshot.data();
+        return tempGameData
+      })
+      .then(()=>{
+        this.setState({gameData:tempGameData})
+      })
   }
 
   // CHARACTER METHODS
@@ -54,13 +62,19 @@ class Game extends Component {
 
   render() {
   // CURRENT CHARACTERS
+  let spareDivsCount = 4-(this.state.heroes.length);
+  let spareDivs = [];
+  for(let i=spareDivsCount; i>0; i--){
+    spareDivs.push(<div key={i}></div>)    
+  }
+
   let heroes = this.state.heroes.map((char) => {
     return(
         <CharCard key={char.id}
           character={char}
           gameId={this.state.gameId}
           delete={()=>this.handleDelCharacter(char.index, char.id)}
-          />       
+          />
     )
   })
 // NEW CHARACTER 
@@ -72,14 +86,18 @@ class Game extends Component {
       newChar = <div></div>
   }
 
+  console.log(this.state.gameData);
     return (
-      <main className="container game-content">
+      <main className="container game-content test">
         <section className="characters"> 
           {heroes}
           {newChar}
+          {spareDivs}
         </section>
         <section className="controls">
-          <GameDetails gameId={this.state.gameId}/> 
+          <GameDetails 
+            gameData={this.state.gameData}
+            logbook={this.state.gameLog}/> 
           <Music />
         </section>
       </main>
