@@ -54,7 +54,7 @@ const Home = () => {
   
     return (
       <div className="container">
-        <section className="welcome">
+        <section className="jumbotron">
           <img src={scroll} alt="All for one, and one for all!"/>
           <div className="cta">
             <p className="t1">Welcome to Questlog</p>

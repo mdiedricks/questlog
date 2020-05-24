@@ -40,7 +40,7 @@ const Create = () => {
   };
 
     return (
-      <div>
+      
         <div className="container">
               <section className="card form">
                 <form onSubmit={handleSubmit} >
@@ -89,7 +89,7 @@ const Create = () => {
                 </form>
               </section>     
         </div>
-      </div>
+      
     );
 }
 

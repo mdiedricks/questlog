@@ -59,62 +59,68 @@ function CharCard(props) {
     }
 
     return (
-        <div className="card" name={props.character.id}>
-            <h6 className="char">{props.character.name}</h6>
-            <p>Race: {props.character.race}</p>
-            <p>Class: {props.character.class}</p>
-            <p>HP: {props.character.hp}</p>
-            <p>AC: {props.character.ac}</p>
-            <p>Level: {props.character.level}</p>
-
+        <div className="char-card character" name={props.character.id}>
             <form action="submit">
-                <label htmlFor="name">Name</label>
+                <div>
                     <input  type="text" 
-                            id="name" 
-                            placeholder="Name"
-                            onChange={handleNameChange}
-                            value={charName}/>
-                <label htmlFor="level">Level</label>
-                    <input  type="number" 
-                            id="level" 
-                            placeholder="Level"
-                            onChange={handleLevelChange}
-                            value={charLevel}/>
-                <label htmlFor="race">Race</label>
-                <select id="race" 
-                        onChange={handleRaceChange}
-                        value={charRace}>
-                    <option value="Human">Human</option>
-                    <option value="Elf">Elf</option>
-                    <option value="Dwarf">Dwarf</option>
-                    <option value="Orc">Orc</option>
-                </select>
-                <label htmlFor="class">Class</label>
-                <select id="class" 
-                        onChange={handleClassChange}
-                        value={charClass}>
-                    <option value="Paladin">Paladin</option>
-                    <option value="Wizard">Wizard</option>
-                    <option value="Warlock">Warlock</option>
-                    <option value="Barbarian">Barbarian</option>
-                </select>
-                <label htmlFor="hp">HP</label>
-                    <input  type="number" 
-                            id="hp" 
-                            placeholder={charHp}
-                            onChange={handleHpChange}
-                            value={charHp}/>
-                <label htmlFor="ac">AC</label>
-                    <input  type="number" 
-                            id="ac" 
-                            placeholder={charAc}
-                            onChange={handleAcChange}
-                            value={charAc}/>
-                
+                        id="name" 
+                        placeholder="Name"
+                        onChange={handleNameChange}
+                        value={charName}
+                        className="char-name"/>
+                </div>
+                <div className="column">
+                    <select id="race" 
+                            onChange={handleRaceChange}
+                            value={charRace}>
+                        <option value="Human">Human</option>
+                        <option value="Elf">Elf</option>
+                        <option value="Dwarf">Dwarf</option>
+                        <option value="Orc">Orc</option>
+                    </select>
+                    <select id="class" 
+                            onChange={handleClassChange}
+                            value={charClass}>
+                        <option value="Paladin">Paladin</option>
+                        <option value="Wizard">Wizard</option>
+                        <option value="Warlock">Warlock</option>
+                        <option value="Barbarian">Barbarian</option>
+                    </select>
+                </div>
+                <section className="char-stats">
+                    <div className="char-stat">
+                        <label htmlFor="hp">LV</label>
+                        <input  type="number" 
+                                    id="level" 
+                                    placeholder="Level"
+                                    onChange={handleLevelChange}
+                                    value={charLevel}
+                                    className="stat"/>
+                    </div>
+                    <div className="char-stat">
+                        <label htmlFor="hp">HP</label>
+                            <input  type="number" 
+                                    id="hp" 
+                                    placeholder={charHp}
+                                    onChange={handleHpChange}
+                                    value={charHp}
+                                    className="stat"/>
+                    </div>
+                    <div className="char-stat">
+                        <label htmlFor="ac">AC</label>
+                            <input  type="number" 
+                                    id="ac" 
+                                    placeholder={charAc}
+                                    onChange={handleAcChange}
+                                    value={charAc}
+                                    className="stat"/>
+                    </div>
+                </section>
             </form>
-            <button className="btn-flat" onClick={(e)=>handleUpdateCharacter(e)}>E</button>
-            <button onClick={props.delete}>X</button>
-            
+            <div className="char-btns">
+                <button className="button char-btn" onClick={(e)=>handleUpdateCharacter(e)}>U</button>
+                <button className="button char-btn" onClick={props.delete}>X</button>
+            </div>
         </div>
     )
 }

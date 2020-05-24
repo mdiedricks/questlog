@@ -59,7 +59,7 @@ a:hover{
 
 /* BASE STYLES */
 .container{
-  margin: 0 5%;
+  margin: 0 15%;
 }
 
 .main{
@@ -78,17 +78,23 @@ a:hover{
 .t3{
   font-size: 1.2rem;
   padding-bottom: 2rem;
-
+}
+.t4{
+  padding-bottom: 2rem;
+}
+.t5{
+  font-size: 0.8rem;
+  padding-bottom: 2rem;
 }
 .hor-bar{
   height: 2px;
   width: 50%;
-  background: var(--col-2);
+  background: var(--back-1);
   margin: 2rem auto;
 }
 /* NAVIGATION */
 nav{
-  background-color: var(--col-4);
+  background-color: var(--back-1);
   padding: 1.3rem 0;
 }
 
@@ -102,24 +108,21 @@ nav{
   font-size: 1.7rem;
 }
 
-.nav-links{
-}
 
 /* PAGE STRUCTURE */
 
 /* home page */
-.welcome{
+.jumbotron{
   display: flex;
   flex-direction: row;
   height: 40%;
-  color: white;
-  padding: 2rem 0 0 0;
-  color: var(--col-2);
-
+  padding: 2rem 3rem 0 0;
+  color: var(--illus-1);
 }
-.welcome img{
+.jumbotron img{
   height: 250px;
   padding-right:3rem ;
+  color: var(--illus-1);
 }
 
 .game-list{
@@ -129,29 +132,27 @@ nav{
 .game-list li{
   list-style: none;
   padding: 1rem;
-  color: var(--col-3);
+  color: var(--illus-1);
 }
 
 .card{
-  width: auto;
-  margin: 0 1rem;
   padding: 2rem;
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: var(--col-1);
+  background: var(--card-1);
   background: 
-    linear-gradient(135deg, transparent 10px, var(--col-1) 0) top left,
-		linear-gradient(225deg, transparent 10px, var(--col-1) 0) top right,
-		linear-gradient(315deg, transparent 10px, var(--col-1) 0) bottom right,
-    linear-gradient(45deg,  transparent 10px, var(--col-1) 0) bottom left;
+    linear-gradient(135deg, transparent 10px, var(--card-1) 0) top left,
+		linear-gradient(225deg, transparent 10px, var(--card-1) 0) top right,
+		linear-gradient(315deg, transparent 10px, var(--card-1) 0) bottom right,
+    linear-gradient(45deg,  transparent 10px, var(--card-1) 0) bottom left;
   background-size: 51% 51%;
   background-repeat: no-repeat;
   background-image: 
-    radial-gradient(circle at 0 0, rgba(204,0,0,0) 14px, var(--col-1) 15px),
-    radial-gradient(circle at 100% 0, rgba(204,0,0,0) 14px, var(--col-1) 15px),
-    radial-gradient(circle at 100% 100%, rgba(204,0,0,0) 14px, var(--col-1) 15px),
-    radial-gradient(circle at 0 100%, rgba(204,0,0,0) 14px, var(--col-1) 15px);
+    radial-gradient(circle at 0 0, rgba(204,0,0,0) 14px, var(--card-1) 15px),
+    radial-gradient(circle at 100% 0, rgba(204,0,0,0) 14px, var(--card-1) 15px),
+    radial-gradient(circle at 100% 100%, rgba(204,0,0,0) 14px, var(--card-1) 15px),
+    radial-gradient(circle at 0 100%, rgba(204,0,0,0) 14px, var(--card-1) 15px);
   box-shadow: 5px 5px 50px 2px 0.3 #464545;
 }
 .card-image img{
@@ -159,21 +160,21 @@ nav{
   margin: 0 2rem 0 0;
 }
 .card-title{
-  color: var(--col-4);
+  color: var(--card-2);
 }
 .card-title:hover{
-  color: var(--col-2);
+  color: var(--illus-2);
+}
+.card-text{
+  color: var(--card-2);
 }
 
-.card-text{
-  color: var(--col-4);
-}
 
 /* create */
 .form{
   margin: 3rem auto;
   padding: 2rem;
-  min-width: 70vw;
+  max-width: 60%;
 }
 form{
   display: flex;
@@ -182,77 +183,87 @@ form{
   margin: 0 auto;
 }
 .form-title{
-  color: var(--col-4);
+  color: var(--card-2);
   display: block;
-  font-size: 1.3rem;
   margin-bottom: 1rem;
 }
 .input-field{
-  margin: 0.5rem;
+  margin: 0.5rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .form-text{
-  color: var(--col-4);
+  color: var(--card-2);
   display: block;
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
 }
 input{
-  border-radius: 10px;
+  border-radius: 4px;
   height: 2rem;
   padding: 0.5rem;
+  background-color: var(--card-1);
+  border: none;
+  font-family: 'Vollkorn', serif;
+  width: 90%;
+}
+input:focus{
+  background-color: var(--back-1);
+  border: none;
 }
 textarea{
-  border-radius: 10px;
+  border-radius: 4px;
+  font-family: 'Vollkorn', serif;
+  border: none;
   padding: 0.5rem;
+  background-color: var(--card-1);
+  width: 90%;
+  resize: none;
 }
-.form-input{
-  display: block;
+textarea:focus{
+  background-color: var(--back-1);
 }
 .button{
   border: none;
   text-decoration: none;
-  color: var(--col-2);
+  color: var(--back-1);
   font-size: 1.2rem;
   margin: 0.5rem;
-  background: var(--col-4);
+  padding: 0.5rem ;
+  background: var(--card-2);
   background: 
-    linear-gradient(135deg, transparent 10px, var(--col-4) 0) top left,
-		linear-gradient(225deg, transparent 10px, var(--col-4) 0) top right,
-		linear-gradient(315deg, transparent 10px, var(--col-4) 0) bottom right,
-    linear-gradient(45deg,  transparent 10px, var(--col-4) 0) bottom left;
+    linear-gradient(135deg, transparent 10px, var(--card-2) 0) top left,
+		linear-gradient(225deg, transparent 10px, var(--card-2) 0) top right,
+		linear-gradient(315deg, transparent 10px, var(--card-2) 0) bottom right,
+    linear-gradient(45deg,  transparent 10px, var(--card-2) 0) bottom left;
   background-size: 51% 51%;
   background-repeat: no-repeat;
   background-image: 
-    radial-gradient(circle at 0 0, rgba(204,0,0,0) 8px, var(--col-4) 8px),
-    radial-gradient(circle at 100% 0, rgba(204,0,0,0) 8px, var(--col-4) 8px),
-    radial-gradient(circle at 100% 100%, rgba(204,0,0,0) 8px, var(--col-4) 8px),
-    radial-gradient(circle at 0 100%, rgba(204,0,0,0) 8px, var(--col-4) 8px);
-  box-shadow: 5px 5px 50px 2px 0.3 #464545;
-  padding: 0.8rem 1.3rem; 
+    radial-gradient(circle at 0 0, rgba(204,0,0,0) 8px, var(--card-2) 8px),
+    radial-gradient(circle at 100% 0, rgba(204,0,0,0) 8px, var(--card-2) 8px),
+    radial-gradient(circle at 100% 100%, rgba(204,0,0,0) 8px, var(--card-2) 8px),
+    radial-gradient(circle at 0 100%, rgba(204,0,0,0) 8px, var(--card-2) 8px);
+  box-shadow: 5px 5px 50px 2px 0.3 #464545; 
 }
 .button:hover{
-  background: var(--col-3);
+  background: var(--illus-1);
   background: 
-    linear-gradient(135deg, transparent 10px, var(--col-3) 0) top left,
-		linear-gradient(225deg, transparent 10px, var(--col-3) 0) top right,
-		linear-gradient(315deg, transparent 10px, var(--col-3) 0) bottom right,
-    linear-gradient(45deg,  transparent 10px, var(--col-3) 0) bottom left;
+    linear-gradient(135deg, transparent 10px, var(--illus-1) 0) top left,
+		linear-gradient(225deg, transparent 10px, var(--illus-1) 0) top right,
+		linear-gradient(315deg, transparent 10px, var(--illus-1) 0) bottom right,
+    linear-gradient(45deg,  transparent 10px, var(--illus-1) 0) bottom left;
   background-size: 51% 51%;
   background-repeat: no-repeat;
   background-image: 
-    radial-gradient(circle at 0 0, rgba(204,0,0,0) 8px, var(--col-3) 8px),
-    radial-gradient(circle at 100% 0, rgba(204,0,0,0) 8px, var(--col-3) 8px),
-    radial-gradient(circle at 100% 100%, rgba(204,0,0,0) 8px, var(--col-3) 8px),
-    radial-gradient(circle at 0 100%, rgba(204,0,0,0) 8px, var(--col-3) 8px);
+    radial-gradient(circle at 0 0, rgba(204,0,0,0) 8px, var(--illus-1) 8px),
+    radial-gradient(circle at 100% 0, rgba(204,0,0,0) 8px, var(--illus-1) 8px),
+    radial-gradient(circle at 100% 100%, rgba(204,0,0,0) 8px, var(--illus-1) 8px),
+    radial-gradient(circle at 0 100%, rgba(204,0,0,0) 8px, var(--illus-1) 8px);
   box-shadow: 5px 5px 50px 2px 0.3 #464545;
 }
+
 
 
 /* game */
-
 .game-content{
   display:grid;
   grid-template-rows: 40% auto 60%; 
@@ -261,35 +272,47 @@ textarea{
 }
 .characters {
   display: flex; 
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  color: var(--col-2);
-}
-.characters .t3{
-  padding-bottom: 0.3rem;
+  justify-content: flex-start;
+  color: var(--illus-2);
+  
 }
 .character{
-  margin: 0.5rem 0;
+  margin: 0.5rem 1%;
   flex-direction: column;
   align-items: flex-start;
-  padding: 1.5rem;
+  width: 18%;
 }
-.character input{
-  width: 80%;
+.char-stat input{
   border: none;
-  background-color: transparent;
-  color: var(--col-2);
   padding: 0;
+  width: 30px;
 }
-.char-title{
-  font-size: 1.2rem;
+.char-name{
+  font-size: 0.8rem;
+  color: var(--illus-2);
+  width: 70px;
+}
+.char-label{
+  font-size: 0.6rem;
+  display: inline;
 }
 .char-text{
   font-size: 0.8rem;
 }
 .char-stats{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.char-stat{
   margin: 0.5rem;
   display: flex;
+  flex-direction: column;
+}
+.char-stat label{
+  font-size: 0.6rem;
 }
 .stat{
   display: flex;
@@ -301,6 +324,45 @@ textarea{
   height: 15px;
   margin: 0.2rem;
 }
+.column{
+  display: flex;
+  flex-direction: column;
+}
+.row{
+  display: flex;
+  flex-direction: row;
+}
+select{
+  border: none;
+  background-color: var(--card-1);
+  color: var(--illus-1);
+}
+.char-card{
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--card-1);
+  background: 
+    linear-gradient(135deg, transparent 10px, var(--card-1) 0) top left,
+		linear-gradient(225deg, transparent 10px, var(--card-1) 0) top right,
+		linear-gradient(315deg, transparent 10px, var(--card-1) 0) bottom right,
+    linear-gradient(45deg,  transparent 10px, var(--card-1) 0) bottom left;
+  background-size: 51% 51%;
+  background-repeat: no-repeat;
+  background-image: 
+    radial-gradient(circle at 0 0, rgba(204,0,0,0) 14px, var(--card-1) 15px),
+    radial-gradient(circle at 100% 0, rgba(204,0,0,0) 14px, var(--card-1) 15px),
+    radial-gradient(circle at 100% 100%, rgba(204,0,0,0) 14px, var(--card-1) 15px),
+    radial-gradient(circle at 0 100%, rgba(204,0,0,0) 14px, var(--card-1) 15px);
+  box-shadow: 5px 5px 50px 2px 0.3 #464545;
+}
+.char-card-image img{
+  height: 5rem;
+  margin: 0 2rem 0 0;
+}
+
+/* GAME CONTROLS */
 .controls{
   display: block;
   margin: auto;
@@ -341,28 +403,7 @@ textarea{
 } */
 
 /* MEDIA QUERIES */
-@media screen and (min-width: 800px){
-  .App{
-    min-height: 100vh;
-  }
-  
-  .container{
-    margin: 0 3%;
-  }
-  
-  /* home section */
 
-/* create */
-
-/* game */
-
-
-/* footer */
-  /* footer{
-    background-color: var(--nav-grey);
-    height: auto;
-  } */
-}
 
 
 /* TEST BUILD STYLES */

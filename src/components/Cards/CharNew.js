@@ -66,52 +66,65 @@ function CharNew(props) {
     
     
     return (
-        <div className="card">
+        <div className="char-card character">
             <form action="submit" onSubmit={handleCreateCharacter}>
-                <label htmlFor="name">Name</label>
+                <div>
                     <input  type="text" 
                             id="name" 
                             placeholder="Name"
                             onChange={handleNameChange}
-                            value={charName}/>
-                <label htmlFor="level">Level</label>
-                    <input  type="number" 
-                            id="level" 
-                            placeholder="Level"
-                            onChange={handleLevelChange}
-                            value={charLevel}/>
-                <label htmlFor="race">Race</label>
-                <select id="race" 
-                        onChange={handleRaceChange}
-                        value={charRace}>
-                    <option value="Human">Human</option>
-                    <option value="Elf">Elf</option>
-                    <option value="Dwarf">Dwarf</option>
-                    <option value="Orc">Orc</option>
-                </select>
-                <label htmlFor="class">Class</label>
-                <select id="class" 
-                        onChange={handleClassChange}
-                        value={charClass}>
-                    <option value="Paladin">Paladin</option>
-                    <option value="Wizard">Wizard</option>
-                    <option value="Warlock">Warlock</option>
-                    <option value="Barbarian">Barbarian</option>
-                </select>
-                <label htmlFor="hp">HP</label>
-                    <input  type="number" 
-                            id="hp" 
-                            placeholder={charHp}
-                            onChange={handleHpChange}
-                            value={charHp}/>
-                <label htmlFor="ac">AC</label>
-                    <input  type="number" 
-                            id="ac" 
-                            placeholder={charAc}
-                            onChange={handleAcChange}
-                            value={charAc}/>
-                <button className="btn-flat">Add</button>
+                            value={charName}
+                            className="char-name"/>
+                </div>
+                <div className="column">
+                    <select id="race" 
+                            onChange={handleRaceChange}
+                            value={charRace}>
+                        <option value="Human">Human</option>
+                        <option value="Elf">Elf</option>
+                        <option value="Dwarf">Dwarf</option>
+                        <option value="Orc">Orc</option>
+                    </select>
+                    <select id="class" 
+                            onChange={handleClassChange}
+                            value={charClass}>
+                        <option value="Paladin">Paladin</option>
+                        <option value="Wizard">Wizard</option>
+                        <option value="Warlock">Warlock</option>
+                        <option value="Barbarian">Barbarian</option>
+                    </select>
+                </div>
+                
+                <section className="char-stats">
+                    <div className="char-stat">
+                        <label htmlFor="level">LV</label>
+                            <input  type="number" 
+                                    id="level" 
+                                    placeholder="Level"
+                                    onChange={handleLevelChange}
+                                    value={charLevel}/>
+                    </div>
+                    <div className="char-stat">
+                        <label htmlFor="hp">HP</label>
+                            <input  type="number" 
+                                    id="hp" 
+                                    placeholder={charHp}
+                                    onChange={handleHpChange}
+                                    value={charHp}/>
+                    </div>
+                    <div className="char-stat">
+                        <label htmlFor="ac">AC</label>
+                            <input  type="number" 
+                                    id="ac" 
+                                    placeholder={charAc}
+                                    onChange={handleAcChange}
+                                    value={charAc}/>
+                    </div>
+                </section>
             </form>
+            <div>
+                <button className="button char-btn">+</button>
+            </div>
         </div>
     )
 }

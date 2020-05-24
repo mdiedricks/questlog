@@ -82,8 +82,8 @@ class Game extends Component {
           {newChar}
         </section>
         <section className="controls">
-          {/* <GameDetails /> */}
-          {/* <Music /> */}
+          <GameDetails /> 
+          <Music />
         </section>
       </main>
     );
