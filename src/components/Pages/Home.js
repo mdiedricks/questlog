@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import {Link} from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+
+import GameCard from '../Cards/GameCard';
+
 import scroll from '../../assets/scroll.svg';
-import sword from '../../assets/sword.svg';
+// import sword from '../../assets/sword.svg';
 
 firebase.initializeApp({
   apiKey: process.env.REACT_APP_API_KEY,
@@ -49,22 +52,10 @@ const Home = () => {
 
   useEffect(() => getGames(), [])
 
-  const gameCards = games.map((e, index) => (
-      <li key={index}>
-        <section className="card game-card">
-            <div className="card-image">
-              <img src={sword} alt="Enter battle!"/>
-            </div>
-            <div >
-              <Link to={`/game/${e.id}`} >
-                <span className="t2 card-title">{e.data().title}</span>
-              </Link>
-              <span className="t4 card-text">{e.data().storyHook}</span>
-              <span className="t5 card-location">{e.data().location}</span>
-            </div>
-            <button className="button char-btn game-delete" onClick={()=>handleGameDel(e.id)}>X</button>
-        </section>
-      </li>  
+  const gameCards = games.map(game => (
+      <GameCard key={game.id}
+        game={game}
+        deleteGame={()=>handleGameDel(game.id)}/>
     )
   )
   

@@ -1,22 +1,22 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import sword from '../../assets/sword.svg';
 
 const GameCard =(props)=> {
     return (
-        <div>
-            <div class="row">
-                <div class="col s12 m6">
-                    <div class="card blue-grey darken-1">
-                        <div class="card-content white-text">
-                            <span class="card-title">{this.props.title}</span>
-                            <p>{this.props.storyHook}</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="#">This is a link</a>
-                        </div>
-                    </div>
-                </div>
+        <section className="card game-card">
+            <div className="card-image">
+                <img src={sword} alt="Enter battle!"/>
             </div>
-        </div>
+            <div >
+                <Link to={`/game/${props.game.id}`} >
+                    <span className="t2 card-title">{props.game.data().title}</span>
+                </Link>
+                <span className="t4 card-text">{props.game.data().storyHook}</span>
+                <span className="t5 card-location">{props.game.data().location}</span>
+            </div>
+            <button className="button char-btn game-delete" onClick={props.deleteGame}>X</button>
+        </section>
     )
 }
 

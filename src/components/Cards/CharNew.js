@@ -48,7 +48,7 @@ function CharNew(props) {
             hp: charHp,
             ac: charAc
         };
-        db.doc(props.gameId).collection('heroes').add(newChar,)
+        db.doc(props.gameId).collection('heroes').add(newChar)
         .then(()=>{
             setCharName('');
             setCharLevel(1);
@@ -123,7 +123,7 @@ function CharNew(props) {
                 </section>
             </form>
             <div>
-                <button className="button char-btn" onClick={handleCreateCharacter}>+</button>
+                <button className="button-lt char-btn" onClick={handleCreateCharacter}>+</button>
             </div>
         </div>
     )

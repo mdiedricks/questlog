@@ -129,6 +129,9 @@ nav{
   list-style: none;
   color: var(--illus-1);
 }
+.game-card{
+  margin: 0 0 1rem 0;
+}
 
 .card{
   padding: 2rem;
@@ -268,30 +271,63 @@ textarea:focus{
     radial-gradient(circle at 0 100%, rgba(204,0,0,0) 8px, var(--illus-1) 8px);
   box-shadow: 5px 5px 50px 2px 0.3 #464545;
 }
+.button-lt{
+  border: none;
+  text-decoration: none;
+  color: var(--card-2);
+  font-size: 1.2rem;
+  margin: 0.5rem;
+  padding: 0.5rem ;
+  background: var(--back-1);
+  background: 
+    linear-gradient(135deg, transparent 10px, var(--back-1) 0) top left,
+		linear-gradient(225deg, transparent 10px, var(--back-1) 0) top right,
+		linear-gradient(315deg, transparent 10px, var(--back-1) 0) bottom right,
+    linear-gradient(45deg,  transparent 10px, var(--back-1) 0) bottom left;
+  background-size: 51% 51%;
+  background-repeat: no-repeat;
+  background-image: 
+    radial-gradient(circle at 0 0, rgba(204,0,0,0) 8px, var(--back-1) 8px),
+    radial-gradient(circle at 100% 0, rgba(204,0,0,0) 8px, var(--back-1) 8px),
+    radial-gradient(circle at 100% 100%, rgba(204,0,0,0) 8px, var(--back-1) 8px),
+    radial-gradient(circle at 0 100%, rgba(204,0,0,0) 8px, var(--back-1) 8px);
+  box-shadow: 5px 5px 50px 2px 0.3 #464545; 
+}
+.button-lt:hover{
+  background: var(--illus-1);
+  color: var(--back-1);
+  background: 
+    linear-gradient(135deg, transparent 10px, var(--card-2) 0) top left,
+		linear-gradient(225deg, transparent 10px, var(--card-2) 0) top right,
+		linear-gradient(315deg, transparent 10px, var(--card-2) 0) bottom right,
+    linear-gradient(45deg,  transparent 10px, var(--card-2) 0) bottom left;
+  background-size: 51% 51%;
+  background-repeat: no-repeat;
+  background-image: 
+    radial-gradient(circle at 0 0, rgba(204,0,0,0) 8px, var(--card-2) 8px),
+    radial-gradient(circle at 100% 0, rgba(204,0,0,0) 8px, var(--card-2) 8px),
+    radial-gradient(circle at 100% 100%, rgba(204,0,0,0) 8px, var(--card-2) 8px),
+    radial-gradient(circle at 0 100%, rgba(204,0,0,0) 8px, var(--card-2) 8px);
+  box-shadow: 5px 5px 50px 2px 0.3 #464545;
+}
 
 
 
 /* GAME */
 .game-content{
-  display:grid;
-  grid-template-rows: 30% 60%; 
-  row-gap: 15px; 
-  border: 1px solid #ccc;
-  height: 90vh;
+  display: grid;
+  grid-template-rows: 1fr 2.6fr;
+  grid-row-gap: 10px;
 }
 .characters {
-  display: flex; 
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: 10px;
   color: var(--illus-2);
-  height: 30%;
 }
 .character{
-  margin: 0.5rem 1%;
   flex-direction: column;
   align-items: flex-start;
-  width: 18%;
 }
 .char-stat input{
   border: none;
@@ -313,12 +349,13 @@ textarea:focus{
 .char-stats{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .char-stat{
   margin: 0.5rem;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 .char-stat label{
   font-size: 0.6rem;
@@ -348,6 +385,7 @@ select{
   border: none;
   background-color: var(--card-1);
   color: var(--illus-1);
+  font-size: 0.8rem;
 }
 .char-card{
   padding: 1rem;
@@ -376,24 +414,77 @@ select{
 
 /* GAME CONTROLS */
 .controls{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 100%;
+  display: grid;
+  grid-template-columns: 4fr 0.97fr;
+  grid-column-gap: 10px;
 }
-.game-detail{
-  width: 79%;
-  margin: 0;
+.game-controls{
   padding: 2rem;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+}
+.game-title{
+  color: var(--illus-1);
+  margin-bottom: 1rem;
+}
+.game-info{
+  padding: 0;
+  margin: 0 0 1.5rem 0;
 }
 .game-text{
-  
+  color: var(--illus-1);
+  display: block;
+}
+.logbook{
+  padding: 0;
+  width: 100%;
+}
+.logs{
+  height: 300px;
+  overflow-y: scroll;
+}
+
+.log{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 0 0 1rem 0;
+}
+.log-form{
+  color: var(--illus-1);
+  background: var(--card-1);
+  border: 1px solid var(--card-2);
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+.log-btn{
+  font-size: 0.8rem;
+}
+.log-entry{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--illus-1);
+}
+.log-content{
+  color: var(--card-2);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  padding-right: 1rem;
+}
+.log-data{
+  display: block;
+}
+.log-time{
+  font-size: 0.7rem;
 }
 
 .music{
-  width: 19%;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -12,7 +12,7 @@ function CharCard(props) {
     const [charClass, setCharClass] = useState(props.character.class)
     const [charHp, setCharHp] = useState(props.character.hp)
     const [charAc, setCharAc] = useState(props.character.ac);
-    const [charId, setCharId] = useState(props.character.id);
+    const charId = props.character.id;
     
 // Handlers
     const handleNameChange = (e) => {
